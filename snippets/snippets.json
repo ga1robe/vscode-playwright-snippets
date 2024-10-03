@@ -1,0 +1,868 @@
+{
+  "Playwright page.goto": {
+    "prefix": "pw-goto",
+    "body": ["await page.goto('$1');"],
+    "description": "Navigate to a URL",
+    "category": "Navigation",
+    "tags": ["navigation", "goto", "open"]
+  },
+  "Playwright page.on console": {
+    "prefix": "pw-page-on-console",
+    "body": [
+      "page.on('console', async msg => {",
+      "\t${0:console.log(msg);}",
+      "});"
+    ],
+    "description": "Listen for console events",
+    "category": "Events",
+    "tags": ["console", "events", "page.on"]
+  },
+  "Playwright page.screenshot": {
+    "prefix": "pw-page-screenshot",
+    "body": [
+      "await page.screenshot({ path: '${0:screenshot.png}', fullPage: true });"
+    ],
+    "description": "Take a screenshot of the page",
+    "category": "Screenshots",
+    "tags": ["screenshot", "visual testing"]
+  },
+  "Playwright locator.screenshot": {
+    "prefix": "pw-locator-screenshot",
+    "body": [
+      "await ${0:elementLocator}.screenshot({ path: '${1:screenshot.png}' });"
+    ],
+    "description": "Take a screenshot of the element",
+    "category": "Screenshots",
+    "tags": ["screenshot", "visual testing"]
+  },
+  "Playwright runtime annotations": {
+    "prefix": "pw-runtime-annotations",
+    "body": [
+      "test.info().annotations.push({",
+      "\ttype: 'browser version',",
+      "\tdescription: browser.version(),",
+      "});"
+    ],
+    "description": "Add runtime annotations",
+    "category": "Annotations",
+    "tags": ["annotations"]
+  },
+  "Playwright page.on response": {
+    "prefix": "pw-page-on-response",
+    "body": [
+      "page.on('response', response => {",
+      "\t${0:console.log(response.status());}",
+      "});"
+    ],
+    "description": "Listen for response events",
+    "category": "Events",
+    "tags": ["response", "events", "page.on"]
+  },
+  "Playwright page.route mock API": {
+    "prefix": "pw-page-on-request-mock",
+    "body": [
+      "await page.route('**/$1', async (route) => {",
+      "\tif (route.request()) {",
+      "\t\tawait route.fulfill({ body: JSON.stringify(mockedBody) })",
+      "\t} else {",
+      "\t\tawait route.continue()",
+      "\t}",
+      "})"
+    ],
+    "description": "Intercept network requests",
+    "category": "Network",
+    "tags": ["mock", "REST API", "request", "route"]
+  },
+  "Playwright expect().toHaveText": {
+    "prefix": "pw-expect-toHaveText",
+    "body": ["await expect(${1:elementLocator}).toHaveText($2);"],
+    "description": "Expect an element to have text",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeVisible": {
+    "prefix": "pw-expect-toBeVisible",
+    "body": ["await expect(${1:elementLocator}).toBeVisible();"],
+    "description": "Expect an element to be visible",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeEmpty": {
+    "prefix": "pw-expect-toBeEmpty",
+    "body": ["await expect(${1:elementLocator}).toBeEmpty();"],
+    "description": "Expect an element to be empty",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeHidden": {
+    "prefix": "pw-expect-toBeHidden",
+    "body": ["await expect(${1:elementLocator}).toBeHidden();"],
+    "description": "Expect an element to be hidden",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeEditable": {
+    "prefix": "pw-expect-toBeEditable",
+    "body": ["await expect(${1:elementLocator}).toBeEditable();"],
+    "description": "Expect an element to be editable",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeEnabled": {
+    "prefix": "pw-expect-toBeEnabled",
+    "body": ["await expect(${1:elementLocator}).toBeEnabled();"],
+    "description": "Expect an element to be enabled",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeDisabled": {
+    "prefix": "pw-expect-toBeDisabled",
+    "body": ["await expect(${1:elementLocator}).toBeDisabled();"],
+    "description": "Expect an element to be disabled",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeFocused": {
+    "prefix": "pw-expect-toBeFocused",
+    "body": ["await expect(${1:elementLocator}).toBeFocused();"],
+    "description": "Expect an element to be focused",
+    "category": "Assertions"
+  },
+  "Playwright expect().toBeInViewport": {
+    "prefix": "pw-expect-toBeInViewport",
+    "body": ["await expect(${1:elementLocator}).toBeInViewport();"],
+    "description": "Expect an element to be in the viewport",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveAccessibleDescription": {
+    "prefix": "pw-expect-toHaveAccessibleDescription",
+    "body": [
+      "await expect(${1:elementLocator}).toHaveAccessibleDescription($2);"
+    ],
+    "description": "Expect an element to have an accessible description",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveAccessibleName": {
+    "prefix": "pw-expect-toHaveAccessibleName",
+    "body": ["await expect(${1:elementLocator}).toHaveAccessibleName($2);"],
+    "description": "Expect an element to have an accessible name",
+    "category": "Assertions"
+  },
+  "Playwright expect().toContainText": {
+    "prefix": "pw-expect-toContainText",
+    "body": ["await expect(${1:elementLocator}).toContainText($2);"],
+    "description": "Expect an element to contain specific text",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveValue": {
+    "prefix": "pw-expect-toHaveValue",
+    "body": ["await expect(${1:elementLocator}).toHaveValue($2);"],
+    "description": "Expect an element to have a specific value",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveValues": {
+    "prefix": "pw-expect-toHaveValues",
+    "body": ["await expect(${1:elementLocator}).toHaveValues([$2]);"],
+    "description": "Expect an element to have specific values",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveAttribute": {
+    "prefix": "pw-expect-toHaveAttribute",
+    "body": ["await expect(${1:elementLocator}).toHaveAttribute($2, $3);"],
+    "description": "Expect an element to have a specific attribute",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveClass": {
+    "prefix": "pw-expect-toHaveClass",
+    "body": ["await expect(${1:elementLocator}).toHaveClass($2);"],
+    "description": "Expect an element to have a specific class",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveCount": {
+    "prefix": "pw-expect-toHaveCount",
+    "body": ["await expect(${1:elementLocator}).toHaveCount($2);"],
+    "description": "Expect an element to have a specific count",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveCSS": {
+    "prefix": "pw-expect-toHaveCSS",
+    "body": ["await expect(${1:elementLocator}).toHaveCSS($2, $3);"],
+    "description": "Expect an element to have specific CSS property",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveId": {
+    "prefix": "pw-expect-toHaveId",
+    "body": ["await expect(${1:elementLocator}).toHaveId($2);"],
+    "description": "Expect an element to have a specific ID",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveTitle": {
+    "prefix": "pw-expect-toHaveTitle",
+    "body": ["await expect(page).toHaveTitle($1);"],
+    "description": "Expect the page to have a specific title",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveJSProperty": {
+    "prefix": "pw-expect-toHaveJSProperty",
+    "body": ["await expect(${1:elementLocator}).toHaveJSProperty($2, $3);"],
+    "description": "Expect an element to have a specific JavaScript property",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveRole": {
+    "prefix": "pw-expect-toHaveRole",
+    "body": ["await expect(${1:elementLocator}).toHaveRole($2);"],
+    "description": "Expect an element to have a specific role",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveURL": {
+    "prefix": "pw-expect-toHaveURL",
+    "body": ["await expect(page).toHaveURL($1);"],
+    "description": "Expect the page to have a specific URL",
+    "category": "Assertions"
+  },
+  "Playwright expect().toHaveScreenshot": {
+    "prefix": "pw-expect-toHaveScreenshot",
+    "body": ["await expect(page).toHaveScreenshot();"],
+    "description": "Expect the page to have a screenshot",
+    "category": "Assertions"
+  },
+  "Playwright network slomo option for a test": {
+    "prefix": "pw-test-use-network-slomo",
+    "body": ["test.use({ launchOptions: { slowMo: ${1:1_000} } });"],
+    "description": "Slow down Playwright operations",
+    "category": "Options"
+  },
+  "Playwright testIdAttribute for a test": {
+    "prefix": "pw-test-use-testIdAttribute",
+    "body": ["test.use({ testIdAttribute : '${1:1_000}'});"],
+    "description": "Set the testIdAttribute for test",
+    "category": "Options"
+  },
+  "Playwright basic network throttling": {
+    "prefix": "pw-network-throttle-basic",
+    "body": [
+      "await page.route('**/*', async route => {",
+      "\tawait new Promise(f => setTimeout(f, 100));",
+      "\tawait route.continue();",
+      "});"
+    ],
+    "description": "Throttle network requests globally with a 100ms delay",
+    "category": "Network",
+    "tags": ["throttle", "route", "REST API"]
+  },
+  "Playwright throttle with random delay": {
+    "prefix": "pw-network-throttle-random",
+    "body": [
+      "await page.route('**/*', async route => {",
+      "\tconst delay = Math.floor(Math.random() * ${1:500});",
+      "\tawait new Promise(f => setTimeout(f, delay));",
+      "\tawait route.continue();",
+      "});"
+    ],
+    "description": "Throttle network requests with a random delay",
+    "category": "Network",
+    "tags": ["throttle", "route", "REST API"]
+  },
+  "Playwright throttle by request type": {
+    "prefix": "pw-network-throttle-request-type",
+    "body": [
+      "await page.route('**/*', async route => {",
+      "\tif (route.request().method() === '${1:POST}') {",
+      "\t\tawait new Promise(f => setTimeout(f, ${2:300}));",
+      "\t}",
+      "\tawait route.continue();",
+      "});"
+    ],
+    "description": "Throttle requests based on HTTP method (GET, POST, etc.)",
+    "category": "Network",
+    "tags": ["throttle", "route", "REST API"]
+  },
+  "Playwright throttle CSS and JS": {
+    "prefix": "pw-network-throttle-css-js",
+    "body": [
+      "await page.route('**/*.{css,js}', async route => {",
+      "\tawait new Promise(f => setTimeout(f, ${1:300}));",
+      "\tawait route.continue();",
+      "});"
+    ],
+    "description": "Throttle loading of CSS and JavaScript resources",
+    "category": "Network",
+    "tags": ["throttle", "route", "REST API"]
+  },
+  "Playwright throttle images": {
+    "prefix": "pw-network-throttle-images",
+    "body": [
+      "await page.route('**/*.{png,jpg,jpeg,gif}', async route => {",
+      "\tawait new Promise(f => setTimeout(f, ${1:500}));",
+      "\tawait route.continue();",
+      "});"
+    ],
+    "description": "Throttle loading of image resources",
+    "category": "Network",
+    "tags": ["throttle", "route", "REST API"]
+  },
+  "Playwright route abort": {
+    "prefix": "pw-route-abort",
+    "body": [
+      "await page.route('${1:/api/comments}', async (route) => {",
+      "\tawait route.abort();",
+      "});"
+    ],
+    "description": "Abort a network request",
+    "category": "Network",
+    "tags": ["route", "REST API", "network"]
+  },
+  "Playwright waitForResponse print console": {
+    "prefix": "pw-wait-response-print-console",
+    "body": [
+      "const responsePromise = page.waitForResponse(async (response) => {",
+      "\tconsole.log(response.status(), response.request().method(), response.url());",
+      "\t",
+      "\treturn true",
+      "});",
+      "",
+      "// Your code here",
+      "",
+      "const response = await responsePromise;"
+    ],
+    "description": "Print all response details to the console",
+    "category": "Network",
+    "tags": ["waitForResponse", "REST API"]
+  },
+  "Playwright set viewport size for a test": {
+    "prefix": "pw-test-use-viewport-hd-size",
+    "body": [
+      "test.use({ viewport: { width: ${1:1920}, height: ${2:1080 } } });"
+    ],
+    "description": "Set the viewport size for test",
+    "category": "Options"
+  },
+  "Playwright set locale and timezone for a test": {
+    "prefix": "pw-test-use-locale-timezone",
+    "body": [
+      "test.use({",
+      "\tlocale: '${1:de-DE}',",
+      "\ttimezoneId: '${2:Europe/Berlin}'",
+      "});"
+    ],
+    "description": "Set locale and timezone for a specific test",
+    "category": "Options"
+  },
+  "Playwright set cookie": {
+    "prefix": "pw-set-cookie",
+    "body": [
+      "await context.addCookies([{",
+      "\tname: '${1:cookieName}',",
+      "\tvalue: '${2:cookieValue}',",
+      "\tdomain: '${3:domain}',",
+      "\tpath: '${4:/}'",
+      "}]);",
+      "await page.reload();"
+    ],
+    "description": "Set a cookie in the browser context",
+    "category": "Cookies"
+  },
+  "Playwright clear cookies": {
+    "prefix": "pw-clear-cookies",
+    "body": ["await context.clearCookies();"],
+    "description": "Clear all cookies in the browser context",
+    "category": "Cookies"
+  },
+  "Playwright handle file download": {
+    "prefix": "pw-download",
+    "body": [
+      "const [download] = await Promise.all([",
+      "\tpage.waitForEvent('download'),",
+      "\t${1:elementLocator}.click()",
+      "]);",
+      "await download.saveAs('${2:path/to/file}');"
+    ],
+    "description": "Handle file downloads",
+    "category": "Downloads",
+    "tags": ["waitForEvent"]
+  },
+  "Playwright emulate geolocation": {
+    "prefix": "pw-emulate-geolocation",
+    "body": [
+      "test.use({ geolocation: {",
+      "\tlatitude: ${1:37.7749},",
+      "\tlongitude: ${2:-122.4194} }",
+      "\tpermissions: ['geolocation'],",
+      "});"
+    ],
+    "description": "Emulate a specific geolocation",
+    "category": "Geolocation"
+  },
+  "Playwright evaluate expression": {
+    "prefix": "pw-eval",
+    "body": [
+      "const result = await page.evaluate(() => {",
+      "\treturn ${1:document.title};",
+      "});",
+      "console.log(result);"
+    ],
+    "description": "Evaluate a JavaScript expression in the page context",
+    "category": "Scripts"
+  },
+  "Playwright frame locator with element fill": {
+    "prefix": "pw-iframe-fill",
+    "body": [
+      "const element = await page.frameLocator('${1:iframeSelector}').getByLabel('${2:labelText}');",
+      "await element.fill('${3:inputValue}');"
+    ],
+    "description": "Locate and fill an element inside a frame",
+    "category": "Frames",
+    "tags": ["frameLocator"]
+  },
+  "Playwright frame locator with element click": {
+    "prefix": "pw-iframe-click",
+    "body": [
+      "const element = await page.frameLocator('${1:iframeSelector}').locator('${2:cssSelector}');",
+      "await element.click();"
+    ],
+    "description": "Locate and click an element inside a frame",
+    "category": "Frames",
+    "tags": ["frameLocator"]
+  },
+  "Playwright frame locator with multiple elements": {
+    "prefix": "pw-iframe-multiple-elements",
+    "body": [
+      "const frame = page.frameLocator('${1:iframeSelector}');",
+      "await frame.fill('${2:inputSelector}', '${3:inputValue}');",
+      "await frame.click('${4:buttonSelector}');",
+      "await frame.waitForSelector('${5:nextElementSelector}');"
+    ],
+    "description": "Perform multiple interactions inside a frame, including waiting for an element",
+    "category": "Frames",
+    "tags": ["iframeSelector"]
+  },
+  "Playwright page add Locator Handler": {
+    "prefix": "pw-locator-handler",
+    "body": [
+      "await page.addLocatorHandler(page.getByText('$1'), async () => {",
+      "\tawait page.getByRole('button', { name: '$2' }).click();",
+      "});"
+    ],
+    "description": "Add a custom locator handler",
+    "category": "Locators",
+    "tags": ["addLocatorHandler"]
+  },
+  "Playwright wait for response": {
+    "prefix": "pw-wait-response",
+    "body": [
+      "const responsePromise = page.waitForResponse(response =>",
+      "\tresponse.url() === '${1:http://localhost:3000/}'",
+      "\t\t&& response.status() === ${2:200}",
+      "\t\t&& response.request().method() === '${3:GET}'",
+      ");",
+      "",
+      "// Your code here",
+      "",
+      "const response = await responsePromise;"
+    ],
+    "description": "Wait for a specific response",
+    "category": "Network",
+    "tags": ["request", "waitForResponse", "REST API"]
+  },
+  "Playwright wait for request": {
+    "prefix": "pw-wait-request",
+    "body": [
+      "const requestPromise = page.waitForRequest(request =>",
+      "\trequest.url() === '${1:http://localhost:3000/}'",
+      "\t\t&& request.method() === '${2:GET}'",
+      ");",
+      "",
+      "// Your code here",
+      "",
+      "const request = await requestPromise;"
+    ],
+    "description": "Wait for a specific request",
+    "category": "Network",
+    "tags": ["request", "waitForRequest", "REST API"]
+  },
+  "Playwright beforeEach block": {
+    "prefix": "pw-beforeEach",
+    "body": [
+      "test.beforeEach(async ({ ${1:page} }) => {",
+      "\t${0:console.log('beforeEach');}",
+      "});",
+      ""
+    ],
+    "description": "Playwright beforeEach block",
+    "category": "Hooks",
+    "tags": ["Hooks"]
+  },
+  "Playwright afterEach block": {
+    "prefix": "pw-afterEach",
+    "body": [
+      "test.afterEach(async ({ ${1:page} }) => {",
+      "\t${0:console.log('afterEach');}",
+      "});",
+      ""
+    ],
+    "description": "Playwright afterEach block",
+    "category": "Hooks",
+    "tags": ["Hooks"]
+  },
+  "Playwright beforeAll block": {
+    "prefix": "pw-beforeAll",
+    "body": [
+      "test.beforeAll(async ({ ${1:page} }) => {",
+      "\t${0:console.log('beforeAll');}",
+      "});",
+      ""
+    ],
+    "description": "Playwright beforeAll block",
+    "category": "Hooks",
+    "tags": ["Hooks"]
+  },
+  "Playwright afterAll block": {
+    "prefix": "pw-afterAll",
+    "body": [
+      "test.afterAll(async ({ ${1:page} }) => {",
+      "\t${0:console.log('afterAll');}",
+      "});",
+      ""
+    ],
+    "description": "Playwright afterAll block",
+    "category": "Hooks",
+    "tags": ["Hooks"]
+  },
+  "Playwright Page Object": {
+    "prefix": "pw-pom",
+    "body": [
+      "import { Page } from '@playwright/test';",
+      "",
+      "export class ${1:ExamplePage} {",
+      "\turl = '';",
+      "\tconstructor(protected page: Page) {}",
+      "",
+      "\tasync goto(parameters = ''): Promise<void> {",
+      "\t\tawait this.page.goto(`\\${this.url}\\${parameters}`);",
+      "\t}",
+      "",
+      "\tasync getTitle(): Promise<string> {",
+      "\t\tawait this.page.waitForLoadState();",
+      "\t\treturn await this.page.title();",
+      "\t}",
+      "",
+      "\tasync waitForPageToLoadUrl(): Promise<void> {",
+      "\t\tawait this.page.waitForURL(this.url);",
+      "\t}",
+      "}"
+    ],
+    "description": "Playwright Page Object Model (POM) class template",
+    "category": "Page Objects",
+    "tags": ["POM", "Page Object Model"]
+  },
+  "Playwright fixture for Page Object": {
+    "prefix": "pw-fixture-pom",
+    "body": [
+      "import { test as base } from '@playwright/test';",
+      "",
+      "export const test = base.extend<{ ${1:examplePage}: ${2:ExamplePage} }>({",
+      "\t${1:examplePage}: async ({ page }, use) => {",
+      "\t\tconst pageObject = new ${2:ExamplePage}(page);",
+      "\t\t// pageObject.goto();",
+      "\t\tawait use(pageObject);",
+      "\t}",
+      "});"
+    ],
+    "description": "Playwright Fixture for Page Object Model (POM) class template",
+    "category": "Page Objects",
+    "tags": ["POM", "Page Object Model", "Fixture"]
+  },
+  "Playwright basic test": {
+    "prefix": "pw-test",
+    "body": [
+      "test(\"$1\", async ({ page }) => {",
+      "\t// Arrange:",
+      "\t$2",
+      "\t// Act:",
+      "\t$3",
+      "\t// Assert:",
+      "\t$4",
+      "});"
+    ],
+    "description": "Basic test",
+    "category": "Tests"
+  },
+  "Playwright basic test with annotations": {
+    "prefix": "pw-test-annotations",
+    "body": [
+      "test(\"$1\", {",
+      "\tannotation: [",
+      "\t\t{ type: 'category', description: 'test description' },",
+      "\t],",
+      "}, async ({ page }) => {",
+      "\t// Arrange:",
+      "\t$2",
+      "\t// Act:",
+      "\t$3",
+      "\t// Assert:",
+      "\t$4",
+      "});"
+    ],
+    "description": "Basic test with annotations",
+    "category": "Tests",
+    "tags": ["annotations"]
+  },
+  "Playwright basic test with tags": {
+    "prefix": "pw-test-tags",
+    "body": [
+      "test(\"$1\", {",
+      "\ttag: [ '${2:myTagName}' ],",
+      "}, async ({ page }) => {",
+      "\t// Arrange:",
+      "\t$3",
+      "\t// Act:",
+      "\t$4",
+      "\t// Assert:",
+      "\t$5",
+      "});"
+    ],
+    "description": "Basic test with tags",
+    "category": "Tests",
+    "tags": ["annotations", "tag", "tags"]
+  },
+  "Playwright basic test with tag": {
+    "prefix": "pw-test-tag",
+    "body": [
+      "test(\"$1\", {",
+      "\ttag: '${2:myTagName}',",
+      "}, async ({ page }) => {",
+      "\t// Arrange:",
+      "\t$3",
+      "\t// Act:",
+      "\t$4",
+      "\t// Assert:",
+      "\t$5",
+      "});"
+    ],
+    "description": "Basic test with tag",
+    "category": "Tests",
+    "tags": ["annotations", "tag", "tags"]
+  },
+  "Playwright basic test step": {
+    "prefix": "pw-step",
+    "body": [
+      "const stepResult = await test.step(\"$1\", async () => {",
+      "\t// Arrange:",
+      "\t$2",
+      "\t// Act:",
+      "\t$3",
+      "\t// Assert:",
+      "\t$4",
+      "});"
+    ],
+    "description": "Basic test step",
+    "category": "Tests"
+  },
+  "Playwright basic test describe with before/after hooks": {
+    "prefix": "pw-describe",
+    "body": [
+      "import { test, expect } from \"@playwright/test\";",
+      "",
+      "test.describe(\"$1\", () => {",
+      "\ttest.beforeEach(async ({ page }) => {",
+      "\t\t// TODO: open the page",
+      "\t});",
+      "",
+      "\ttest.afterEach(async ({ page }) => {",
+      "\t\t// TODO: clear the data after the test",
+      "\t});",
+      "",
+      "\ttest(\"$2\", async ({ page }) => {",
+      "\t\t// Arrange:",
+      "\t\t// Act:",
+      "\t\t// Assert:",
+      "\t});",
+      "});"
+    ],
+    "description": "Basic describe suite with before/after hooks",
+    "category": "Tests",
+    "tags": ["hooks"]
+  },
+  "Playwright test describe with all before/after hooks": {
+    "prefix": "pw-describe-full",
+    "body": [
+      "import { test, expect } from \"@playwright/test\";",
+      "",
+      "test.describe(\"$1\", () => {",
+      "\ttest.beforeAll(async () => {",
+      "\t\t// TODO: prepare the data before all test",
+      "\t});",
+      "",
+      "\ttest.beforeEach(async ({ page }) => {",
+      "\t\t// TODO: open the page before each test",
+      "\t});",
+      "",
+      "\ttest.afterEach(async ({ page }) => {",
+      "\t\t// TODO: clear the data after each test",
+      "\t});",
+      "",
+      "\ttest.afterAll(async () => {",
+      "\t\t// TODO: clear the data after all tests",
+      "\t});",
+      "",
+      "\ttest(\"$2\", async ({ page }) => {",
+      "\t\t// Arrange:",
+      "\t\t// Act:",
+      "\t\t// Assert:",
+      "\t});",
+      "});"
+    ],
+    "description": "Describe suite with all before/after hooks",
+    "category": "Tests",
+    "tags": ["hooks"]
+  },
+  "Get elements from the viewport": {
+    "prefix": "pw-get-elements-from-viewport",
+    "body": [
+      "import { test, expect } from '@playwright/test';",
+      "",
+      "const getElementsFromViewport = async (elements: Locator[]): Promise<Locator[]> => {",
+      "\tconst elementsInViewport: Locator[] = [];",
+      "\tfor (const element of elements) {",
+      "\t\tif (await isInViewport(element)) {",
+      "\t\t\telementsInViewport.push(element);",
+      "\t\t}",
+      "\t}",
+      "\treturn elementsInViewport;",
+      "};"
+    ],
+    "description": "Get elements from the viewport",
+    "category": "Utilities"
+  },
+  "Check dataLayer": {
+    "prefix": "pw-check-dataLayer",
+    "body": [
+      "test('check dataLayer', async ({ page }) => {",
+      "\tawait page.goto(",
+      "\t\t'${0:https://stackoverflow.com/questions/75163236/how-to-update-upgrade-playwrigh}'",
+      "\t);",
+      "\tconst dataLayer: [object] = await page.evaluate('dataLayer');",
+      "\tconsole.log(dataLayer);",
+      "",
+      "\tconst searchKey = 'event';",
+      "\tconst dataFound = dataLayer.find((item) => item.hasOwnProperty(searchKey));",
+      "\tconsole.log(",
+      "\t\t`${dataFound?.[searchKey] ?? 'Key ' + searchKey + ' not found in object'}`",
+      "\t);",
+      "});"
+    ],
+    "description": "Check dataLayer",
+    "category": "Tests",
+    "tags": ["evaluate"]
+  },
+  "Record HAR file": {
+    "prefix": "pw-record-har",
+    "body": [
+      "await page.routeFromHAR('./hars/users.har', {",
+      "  url: '*/**/api/users',",
+      "  update: true,",
+      "});"
+    ],
+    "description": "Record HAR file",
+    "category": "Network",
+    "tags": ["routeFromHAR", "network"]
+  },
+  "Use HAR file": {
+    "prefix": "pw-use-har",
+    "body": [
+      "await page.routeFromHAR('./hars/users.har', {",
+      "  url: '*/**/api/users',",
+      "  update: false,",
+      "});"
+    ],
+    "description": "Use HAR file",
+    "category": "Network",
+    "tags": ["routeFromHAR", "network"]
+  },
+  "Set test describe as serial": {
+    "prefix": "pw-set-describe-serial",
+    "body": ["test.describe.configure({ mode: 'serial' });"],
+    "description": "Set test describe as serial",
+    "category": "Tests",
+    "tags": ["configure", "serial", "mode"]
+  },
+  "Set test describe as parallel": {
+    "prefix": "pw-set-describe-parallel",
+    "body": ["test.describe.configure({ mode: 'parallel' });"],
+    "description": "Set test describe as parallel",
+    "category": "Tests",
+    "tags": ["configure", "parallel", "mode"]
+  },
+  "Set test describe as default": {
+    "prefix": "pw-set-describe-default",
+    "body": ["test.describe.configure({ mode: 'default' });"],
+    "description": "Set test describe as default",
+    "category": "Tests",
+    "tags": ["configure", "mode", "mode"]
+  },
+  "Set test describe retries": {
+    "prefix": "pw-set-describe-retries",
+    "body": ["test.describe.configure({ retries: ${1:3} });"],
+    "description": "Set test describe retries",
+    "category": "Tests",
+    "tags": ["configure", "retries"]
+  },
+  "Set test describe timeout": {
+    "prefix": "pw-set-describe-timeout",
+    "body": ["test.describe.configure({ timeout: ${1:60000} });"],
+    "description": "Set test describe timeout",
+    "category": "Tests",
+    "tags": ["configure"]
+  },
+  "Set test as skip": {
+    "prefix": "pw-set-test-skip",
+    "body": [
+      "test.skip(browserName === 'webkit', 'This test is not supported in Safari');"
+    ],
+    "description": "Set test as skip",
+    "category": "Tests",
+    "tags": ["configure", "skip"]
+  },
+  "Set test as slow": {
+    "prefix": "pw-set-test-slow",
+    "body": [
+      "test.slow(browserName === 'webkit', 'This test is slow in Safari');"
+    ],
+    "description": "Set test as slow",
+    "category": "Tests",
+    "tags": ["configure", "slow"]
+  },
+  "Set all tests as slow": {
+    "prefix": "pw-set-tests-slow",
+    "body": [
+      "test.slow(({ browserName }) => browserName === 'webkit', 'all tests are slow in Safari');"
+    ],
+    "description": "Set all test as slow",
+    "category": "Tests",
+    "tags": ["configure", "slow"]
+  },
+  "Run codegen with default browser profile": {
+    "prefix": "pw-codegen-browser-default-profile",
+    "body": [
+      "// 1. Place this code in `codegen.mjs` file",
+      "// 2. Run in terminal: `node codegen.mjs`",
+      "",
+      "import { chromium } from '@playwright/test';",
+      "",
+      "(async () => {",
+      "\t// Setup",
+      "\tconst context = await chromium.launchPersistentContext('C:\\Users\\YourUsername\\AppData\\Local\\Microsoft\\Edge\\User Data', {",
+      "\t\theadless: false,",
+      "\t\tchannel: 'msedge',",
+      "\t\t// args: [`--profile-directory=Profile 2`] // For different profile",
+      "\t\t// For profile name check: chrome://version and 'Profile Path' field",
+      "\t});",
+      "\t// For macOS, use:",
+      "\t// Microsoft Edge: '/Users/YourUsername/Library/Application Support/Microsoft Edge'",
+      "\t// Google Chrome:\t'/Users/YourUsername/Library/Application Support/Google/Chrome'",
+      "",
+      "\tconst page = context.pages()[0];",
+      "",
+      "\tawait page.pause();",
+      "",
+      "\tawait context.close();",
+      "})();"
+    ],
+    "description": "Run codegen with browser profile",
+    "category": "codegen",
+    "tags": ["configure", "codegen", "browser profile"]
+  }
+}
